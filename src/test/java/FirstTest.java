@@ -1,8 +1,8 @@
-import Praktikum.Constants;
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
+import org.axample.Constants;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ import static io.restassured.RestAssured.given;
 public class FirstTest {
     @Before
     public void setUp() {
-        RestAssured.baseURI = Constants.BASE_URL_MESTO_STRING;
+        RestAssured.baseURI = Constants.BASE_URI_MESTO_STRING;
     }
 
     @Test
