@@ -15,6 +15,7 @@ public class CourierCredentials {
         return  new CourierCredentials(courier.getLogin(), courier.getPassword());
     }
 
+
     public String getLogin() {
         return login;
     }

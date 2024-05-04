@@ -1,5 +1,7 @@
 package courier;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 public class Courier {
     private  String login;
     private  String password;
@@ -14,9 +16,8 @@ public class Courier {
         this.firstName = firstName;
     }
 
-    static Courier generic() {
-        var courier = new Courier("Sanch", "1234", "Lion");
-        return courier;
+    static Courier random() {
+        return new Courier("Sanch-"+ RandomStringUtils.randomAlphabetic(3,5), "1234", "Lion");
     }
 
     public String getLogin() {
