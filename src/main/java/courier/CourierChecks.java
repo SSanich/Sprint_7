@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 public class CourierChecks {
     @Step("Check courier logged successfully")
 
-    public Integer loggedInSuccessfully(ValidatableResponse loginResponse) {
+    public int loggedInSuccessfully(ValidatableResponse loginResponse) {
         return loginResponse
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
@@ -31,6 +31,7 @@ public class CourierChecks {
                 .path("ok");
         assertTrue(created);
     }
+
 
     public void deletedSuccesfully(ValidatableResponse deleteResponse) {
         deleteResponse

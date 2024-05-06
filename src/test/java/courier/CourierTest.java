@@ -21,7 +21,7 @@ public class CourierTest {
             check.deletedSuccesfully(deleteResponse);
         }
     }
-
+    // как разнести по разным классам
     @DisplayName("Courier create and login")
     @Test
     public void courierTest() {
@@ -37,6 +37,19 @@ public class CourierTest {
         courierId = check.loggedInSuccessfully(loginResponse);
         assertNotEquals(0, courierId);
     }
+    @DisplayName("Check that impossible create same courier and ")
+    @Test
+    public void sameCourierTest(){
+        // в каких случаях нужно ValidatableResponse
+        // если использовать тот-же метод, по созданию курьера, то он дважы отобразится в отчете аллюр
+        //нужно создать отдельный метод? или сделать интерфейс имплементировать методы?
+        var courier = Courier.random();
+        client.createCourier(courier);
+        client.createSameCourier(courier);
+    }
+
+
+
 
 //    @Test
 //    public void courierDelete() {

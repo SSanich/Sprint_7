@@ -1,14 +1,15 @@
 package courier;
 
 import io.qameta.allure.Step;
-import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import envir.Constants;
 import orders.Client;
 
+import java.net.HttpURLConnection;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 
 public class CourierClient extends Client {
     @Step("Login courier")
@@ -21,7 +22,6 @@ public class CourierClient extends Client {
     }
 
     @Step("Create courier")
-
     public ValidatableResponse createCourier(Courier courier) {
         return spec()
                 .body(courier)
@@ -36,5 +36,12 @@ public class CourierClient extends Client {
                 .when()
                 .delete(Constants.COURIER_PATH_STRING + "/" + id)
                 .then().log().all();
+    }
+
+    public ValidatableResponse createSameCourier(Courier courier) {
+        return createCourier(courier)
+                .assertThat()
+                .statusCode(HttpURLConnection.HTTP_CONFLICT)
+                .body("message", equalTo("Этот логин уже используется. Попробуйте другой."));
     }
 }
