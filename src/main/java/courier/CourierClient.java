@@ -38,7 +38,6 @@ public class CourierClient extends Client {
 @Step ("create courier without required field")
     public ValidatableResponse createCourierWithParam(Courier courier) {
         return spec()
-                .log().all()
                 .body(courier)
                 .when()
                 .post(Constants.COURIER_PATH_STRING)

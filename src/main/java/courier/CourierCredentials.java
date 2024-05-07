@@ -2,8 +2,7 @@ package courier;
 
 public class CourierCredentials {
     private  String login;
-    private  String password;
-    public CourierCredentials() {
+    private  String password;{
     }
 
     public CourierCredentials(String login, String password){

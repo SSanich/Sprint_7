@@ -16,7 +16,7 @@ public class Courier {
         this.firstName = firstName;
     }
 
-    static Courier random() {
+    public static Courier random() {
         return new Courier("Sanch-"+ RandomStringUtils.randomAlphabetic(3,5), "1234", "Lion");
     }
 
