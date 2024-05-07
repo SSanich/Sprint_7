@@ -1,9 +1,7 @@
 package courier;
 
 import io.qameta.allure.Step;
-import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
-import org.junit.Assert;
 
 import java.net.HttpURLConnection;
 
@@ -24,7 +22,7 @@ public class CourierChecks {
 
     @Step("Check code 201 courier created successfully")
 
-    public void createdSuccesfully(ValidatableResponse createResponse) {
+    public void createdSuccessfully(ValidatableResponse createResponse) {
         boolean created = createResponse
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_CREATED)

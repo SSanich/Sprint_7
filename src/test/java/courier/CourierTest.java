@@ -26,7 +26,7 @@ public class CourierTest {
         var courier = Courier.random();
         ValidatableResponse createResponse = client.createCourier(courier);
         //проверка курьер создан
-        check.createdSuccesfully(createResponse);
+        check.createdSuccessfully(createResponse);
         // Логин курьера
         var creds = CourierCredentials.from(courier);
         ValidatableResponse loginResponse = client.loginCourier(creds);
