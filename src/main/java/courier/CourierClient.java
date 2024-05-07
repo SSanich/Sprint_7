@@ -37,11 +37,4 @@ public class CourierClient extends Client {
                 .delete(Constants.COURIER_PATH_STRING + "/" + id)
                 .then().log().all();
     }
-
-    public ValidatableResponse createSameCourier(Courier courier) {
-        return createCourier(courier)
-                .assertThat()
-                .statusCode(HttpURLConnection.HTTP_CONFLICT)
-                .body("message", equalTo("Этот логин уже используется. Попробуйте другой."));
-    }
 }

@@ -7,7 +7,7 @@ import envir.Constants;
 import static io.restassured.RestAssured.given;
 
 public class Client {
-    protected static RequestSpecification spec() {
+    public static RequestSpecification spec() {
         return given().log().all()
                 .contentType(ContentType.JSON)
                 .baseUri(Constants.BASE_URI_STRING)

@@ -7,6 +7,7 @@ import org.junit.Assert;
 
 import java.net.HttpURLConnection;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -37,5 +38,12 @@ public class CourierChecks {
         deleteResponse
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK);
+    }
+    @Step("Check code 409 and message")
+    public void checkSameCourier(ValidatableResponse sameCourier) {
+        sameCourier
+                .assertThat()
+                .statusCode(HttpURLConnection.HTTP_CONFLICT)
+                .body("message", equalTo("Этот логин уже используется. Попробуйте другой."));
     }
 }
