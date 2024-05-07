@@ -11,6 +11,7 @@ public class Client {
         return given().log().all()
                 .contentType(ContentType.JSON)
                 .baseUri(Constants.BASE_URI_STRING)
-                .basePath(Constants.BASE_PATH_STRING);
+                .basePath(Constants.BASE_PATH_STRING)
+                ;
     }
 }

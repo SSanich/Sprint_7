@@ -1,36 +1,32 @@
 package courier;
 
-import envir.Constants;
-import orders.Client;
+import io.qameta.allure.junit4.DisplayName;
+import io.restassured.response.ValidatableResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import static orders.Client.spec;
+
 @RunWith(Parameterized.class)
 public class FieldsCreateCourierTest {
+    private final CourierClient client = new CourierClient();
+    private final CourierChecks check = new CourierChecks();
     private final Courier courier;
 
     public FieldsCreateCourierTest(Courier courier) {
         this.courier = courier;
     }
 
-
     @Parameterized.Parameters
     public static Object[][] getData() {
         return new Object[][]{
-                {new Courier(null, "LoginPass",null)},
-                {new Courier("CourierLogin", null,null)}
+                {new Courier(null, "LoginPass", null)},
+                {new Courier("CourierLogin", null, null)}
         };
     }
+@DisplayName("Create courier without required field")
     @Test
-    CourierClient.createCourier();
-//    public void createCourierWithoutRequiredField() throws InterruptedException {
-//        spec()
-//                .log().all()
-//                .body(creds)
-//                .when()
-//                .post(Constants.COURIER_PATH_STRING)
-//                .then().log().all();
-//    }
-
+    public void createCourierWithoutRequiredField() {
+        ValidatableResponse withoutFieldResponse = client.createCourierWithParam(courier);
+        check.checkCreateCourierWithoutRequiredField(withoutFieldResponse);
+    }
 }
