@@ -6,9 +6,6 @@ import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Test;
 
-import java.net.HttpURLConnection;
-
-import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertNotEquals;
 
 public class LoginTest {
@@ -34,18 +31,27 @@ public class LoginTest {
         var creds = CourierCredentials.from(courier);
         ValidatableResponse loginResponse = client.loginCourier(creds);
         courierId = loginResponse.extract().path("id");
-        //передаем неверный лонгин
+        //передаем неверный логин
+        var mainLogin = creds.getLogin();
+        var mainPassword = creds.getPassword();
         creds.setLogin("WrongLogin");
         ValidatableResponse wrongLoginResponse = client.loginCourier(creds);
-        loginCheck.wrongLoginCheck(wrongLoginResponse);
+        loginCheck.wrongFieldValueCheck(wrongLoginResponse);
         // передаем неверный пароль
+        creds.setLogin(mainLogin);
         creds.setPassword("WrongPassword");
         ValidatableResponse wrongPasswordResponse = client.loginCourier(creds);
-        loginCheck.wrongPasswordCheck(wrongPasswordResponse);
-        // передаем без поля login
-        client.loginCourier(creds);
-        var  credsWrongLogin= creds;
-        client.loginCourier(credsWrongLogin);
+        loginCheck.wrongFieldValueCheck(wrongPasswordResponse);
+        // передаем без поля password
+//        creds.setPassword(null);
+//        ValidatableResponse withoutPasswordResponse= client.loginCourier(creds);
+//        loginCheck.withoutRequiredFieldLoginCheck(withoutPasswordResponse);
+        // передаем без логина
+        creds.setLogin(null);
+        creds.setPassword(mainPassword);
+        ValidatableResponse withoutLoginResponse= client.loginCourier(creds);
+        loginCheck.withoutRequiredFieldLoginCheck(withoutLoginResponse);
+
     }
 
 

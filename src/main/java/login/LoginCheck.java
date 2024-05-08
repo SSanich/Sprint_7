@@ -10,17 +10,25 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class LoginCheck {
     @Step("Wrong login.Check code 404 and message - Учетная запись не найдена ")
-    public static void wrongLoginCheck(ValidatableResponse wrongLoginResponse) {
+    public static void wrongFieldValueCheck(ValidatableResponse wrongLoginResponse) {
         wrongLoginResponse
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_NOT_FOUND)
                 .body("message", equalTo("Учетная запись не найдена"));
     }
-    @Step("Wrong password.Check code 404 and message - Учетная запись не найдена ")
-    public static void wrongPasswordCheck(ValidatableResponse wrongPasswordResponse) {
+//    @Step("Wrong password.Check code 404 and message - Учетная запись не найдена ")
+//    public static void wrongPasswordCheck(ValidatableResponse wrongPasswordResponse) {
+//        wrongPasswordResponse
+//                .assertThat()
+//                .statusCode(HttpURLConnection.HTTP_NOT_FOUND)
+//                .body("message", equalTo("Учетная запись не найдена"));
+//    }
+    
+    @Step("Without password.Check code 400 and message - Недостаточно данных для входа ")
+    public static void withoutRequiredFieldLoginCheck(ValidatableResponse wrongPasswordResponse) {
         wrongPasswordResponse
                 .assertThat()
-                .statusCode(HttpURLConnection.HTTP_NOT_FOUND)
-                .body("message", equalTo("Учетная запись не найдена"));
+                .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
+                .body("message", equalTo("Недостаточно данных для входа"));
     }
 }
