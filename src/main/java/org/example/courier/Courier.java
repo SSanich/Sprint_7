@@ -1,4 +1,4 @@
-package courier;
+package org.example.courier;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
@@ -16,7 +16,7 @@ public class Courier {
         this.firstName = firstName;
     }
 
-    static Courier random() {
+    public static Courier random() {
         return new Courier("Sanch-"+ RandomStringUtils.randomAlphabetic(3,5), "1234", "Lion");
     }
 
