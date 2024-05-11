@@ -1,4 +1,4 @@
-package org.example.envConst;
+package org.example.envсonst;
 
 public class Constants {
     public static final String BASE_URI_STRING = "https://qa-scooter.praktikum-services.ru";

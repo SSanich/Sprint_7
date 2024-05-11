@@ -2,7 +2,7 @@ package org.example;
 
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import org.example.envConst.Constants;
+import org.example.envсonst.Constants;
 import static io.restassured.RestAssured.given;
 
 public class Client {

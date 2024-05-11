@@ -4,7 +4,7 @@ import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
 import org.example.Client;
 import java.net.HttpURLConnection;
-import org.example.envConst.Constants;
+import org.example.envсonst.Constants;
 public class OrderClient extends Client {
 
     @Step("Create order")

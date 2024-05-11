@@ -18,7 +18,7 @@ public class ListOfOrdersTests {
     @Test
     @DisplayName("check whether a list of orders is received in the response body")
     @Description("List of orders test. GET/api/v1/orders")
-    public void ListOfOrders() {
+    public void listOfOrders() {
         ValidatableResponse response = orderClient.getOrderList();
         assertOrder.getOrderListSuccessfully(response);
     }
